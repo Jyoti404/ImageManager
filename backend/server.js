@@ -13,18 +13,12 @@ const app = express();
 
 
 app.use(cors({
-  origin: [
-    'https://image-manager-lft2.vercel.app' // deployed frontend
-  ],
-  methods: 'GET,POST,PUT,DELETE',
-  credentials: true
+  origin: 'https://image-manager-lft2.vercel.app', // Single origin for simplicity
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+  optionsSuccessStatus: 204 // Explicitly set status for OPTIONS requests
 }));
-// app.options('*', cors({
-//   origin: [
-//     'https://image-manager-lft2.vercel.app'
-//   ],
-//   credentials: true
-// }));
+
 
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
