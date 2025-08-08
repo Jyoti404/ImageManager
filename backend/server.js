@@ -3,7 +3,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const connectDB = require('./config/db');
-import cors from 'cors';
+const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const folderRoutes = require('./routes/folderRoutes');
 const imageRoutes = require('./routes/imageRoutes');
@@ -15,7 +15,6 @@ const app = express();
 
 app.use(cors({
   origin: [
-    'http://localhost:5173', // Vite local
     'https://image-manager-lft2.vercel.app' // deployed frontend
   ],
   methods: 'GET,POST,PUT,DELETE',
