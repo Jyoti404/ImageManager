@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
+const dotenv =require('dotenv');
 
+dotenv.config();
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://khushvaha536:zK933yjRcAz7BWKa@cluster0.4hzgpgu.mongodb.net/imageManager', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+   await mongoose.connect(process.env.MONGODB_URI);
     console.log('✅ MongoDB connected');
   } catch (error) {
     console.error('❌ MongoDB connection failed:', error.message);
