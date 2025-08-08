@@ -16,7 +16,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173', // Vite local
-    'https://your-frontend-domain.com' // deployed frontend
+    'https://image-manager-lft2.vercel.app' // deployed frontend
   ],
   methods: 'GET,POST,PUT,DELETE',
   credentials: true
