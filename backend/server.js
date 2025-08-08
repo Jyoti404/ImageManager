@@ -18,7 +18,7 @@ app.use(cors({
   credentials: true,
   optionsSuccessStatus: 204 // Explicitly set status for OPTIONS requests
 }));
-app.options('*', cors());
+// app.options('*', cors());
 
 
 app.use(express.json());
