@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 const SearchBar = ({ onSearch, onClear }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searching, setSearching] = useState(false);
@@ -11,7 +13,7 @@ const SearchBar = ({ onSearch, onClear }) => {
     setSearching(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/images/search?q=${encodeURIComponent(searchQuery)}`,
+        `${API_BASE}/api/images/search?q=${encodeURIComponent(searchQuery)}`,
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`

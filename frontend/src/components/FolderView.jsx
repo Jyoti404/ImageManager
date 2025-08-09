@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CreateFolder from './CreateFolder';
 
+const API_BASE =  import.meta.env.VITE_API_URL;
+
 const FolderView = ({ 
   currentFolderId, 
   onFolderChange, 
@@ -27,7 +29,7 @@ const FolderView = ({
   const fetchFolders = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/folders?parentId=${currentFolderId || ''}`,
+        `${API_BASE}/api/folders?parentId=${currentFolderId || ''}`,
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -48,7 +50,7 @@ const FolderView = ({
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:5000/api/images?folderId=${currentFolderId || ''}`,
+        `${API_BASE}/api/images?folderId=${currentFolderId || ''}`,
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -73,7 +75,7 @@ const FolderView = ({
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/folders/${folderId}`, {
+      const response = await fetch(`${API_BASE}/api/folders/${folderId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -96,7 +98,7 @@ const FolderView = ({
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/images/${imageId}`, {
+      const response = await fetch(`${API_BASE}/api/images/${imageId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -177,7 +179,7 @@ const FolderView = ({
           <div key={image._id} className="image-item">
             <div className="image-thumbnail">
               <img 
-                src={`http://localhost:5000/${image.filePath}`}
+                src={`${API_BASE}/${image.filePath}`}
                 alt={image.name}
                 onError={(e) => {
                   e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlPC90ZXh0Pjwvc3ZnPg==';

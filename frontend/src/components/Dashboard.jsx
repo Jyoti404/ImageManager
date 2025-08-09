@@ -34,7 +34,7 @@ const Dashboard = ({ user, onLogout }) => {
 
   const fetchBreadcrumb = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/folders/${currentFolderId}/path`, {
+      const response = await fetch( `${import.meta.env.VITE_API_URL}/api/folders/${currentFolderId}/path`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

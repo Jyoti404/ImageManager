@@ -28,12 +28,13 @@ const Auth = ({ onLogin }) => {
         ? { email: formData.email, password: formData.password }
         : formData;
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL.replace(/\/$/, '')}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
+        credentials: 'include', 
       });
 
       const data = await response.json();

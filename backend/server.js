@@ -11,7 +11,7 @@ const app = express();
 
 const corsOptions = {
   origin: 'https://image-manager-lft2.vercel.app',
-  methods: ['GET', 'POST',  "PUT", "DELETE",'OPTIONS'], 
+  methods: ['GET', 'POST',  'PUT', 'DELETE','OPTIONS'], 
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, 
 };
@@ -31,7 +31,9 @@ connectDB();
 app.use('/api/auth', authRoutes);
 app.use('/api/folders', folderRoutes);
 app.use('/api/images', imageRoutes);
-
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
 
 const PORT = process.env.PORT || 5000;
 

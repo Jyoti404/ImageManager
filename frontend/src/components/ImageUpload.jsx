@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 const ImageUpload = ({ currentFolderId, onUploadSuccess }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageName, setImageName] = useState('');
@@ -54,7 +56,7 @@ const ImageUpload = ({ currentFolderId, onUploadSuccess }) => {
     formData.append('folderId', currentFolderId);
 
     try {
-      const response = await fetch('http://localhost:5000/api/images/upload', {
+      const response = await fetch(`${API_BASE}/api/images/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
