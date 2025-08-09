@@ -12,13 +12,16 @@ const app = express();
 // Middleware
 
 
-app.use(cors({
-  origin: 'https://image-manager-lft2.vercel.app', // Single origin for simplicity
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-  optionsSuccessStatus: 204 // Explicitly set status for OPTIONS requests
-}));
+const corsOptions = {
+  origin: 'https://image-manager-lft2.vercel.app', // Your frontend's origin
+  methods: ['GET', 'POST', 'OPTIONS'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+};
 // app.options('*', cors());
+app.use(cors(corsOptions));
+
+// Handle preflight OPTIONS requests (required for CORS)
+app.options('*', cors(corsOptions));
 
 
 app.use(express.json());
