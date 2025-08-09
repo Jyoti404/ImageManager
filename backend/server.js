@@ -36,22 +36,7 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// Log routes for debugging
-console.log('Registered Routes and Middleware:');
-if (app._router && app._router.stack) {
-  app._router.stack.forEach((r, index) => {
-    if (r.route && r.route.path) {
-      console.log(`Route [${index}]: ${r.route.path} (${r.route.stack[0].method})`);
-    } else if (r.name === 'router' && r.regexp) {
-      console.log(`Router [${index}]: ${r.regexp}`);
-    } else {
-      console.log(`Middleware [${index}]: ${r.name || 'anonymous'} (Regexp: ${r.regexp})`);
-    }
-  });
-} else {
-  console.error('Error: app._router is undefined or stack is missing');
-  console.log('app._router:', app._router);
-}
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
